@@ -1,0 +1,26 @@
+ROLE: Senior AI Engineer - Founding Team (Redrob AI)
+LOCATION: Pune/Noida, India (Hybrid) | Relocatable from Tier-1 Indian cities | Must be in India / no visa sponsorship
+EXPERIENCE: 5-9 years (applied ML/product engineering preferred over pure research)
+
+CORE REQUIREMENTS (HIGH WEIGHT):
+1. Production embeddings-based retrieval systems (e.g., sentence-transformers, OpenAI embeddings, BGE, E5) including handling index refresh and drift.
+2. Vector databases or hybrid search infrastructure (e.g., Pinecone, Weaviate, Qdrant, Milvus, OpenSearch, FAISS).
+3. Production-quality Python coding.
+4. Evaluation frameworks for ranking/search (NDCG, MRR, MAP, offline-to-online correlation, A/B test interpretation).
+5. Shipped end-to-end search, recommendation, or ranking systems to real users at scale.
+
+NICE-TO-HAVE (LOWER WEIGHT):
+1. LLM fine-tuning (LoRA, QLoRA, PEFT).
+2. Learning-to-rank models (XGBoost, neural rankers).
+3. Open-source contributions, distributed systems, recruiting/HR-tech experience.
+
+CRITICAL DISQUALIFIERS / NEGATIVES (HEAVY/MODERATE PENALTIES):
+1. Pure research/academic backgrounds with no production deployment experience.
+2. Recent LangChain-only AI experience (started <12 months ago) without pre-2022 ML/retrieval production experience.
+3. Tech leads/architects/managers who haven't written production code in the last 18 months.
+4. Title-hopping (3+ companies in 4-5 years, average tenure <18 months, escalating Senior -> Staff -> Principal).
+5. Framework enthusiasts (AI skills dominated by trendy wrapper/demo tools with duration <12 months and no infra/systems-level skills).
+6. Consulting-only careers (only worked at IT consultants like TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini, with zero product-company experience).
+7. Wrong-domain background (focused entirely on computer vision, speech, robotics with no NLP/IR/text-retrieval).
+8. Closed-source only (5+ years at large/proprietary company, github_activity_score = -1, no open-source or certifications).
+9. Location mismatch (not in Pune, Noida, Bangalore, Hyderabad, Mumbai, Delhi NCR, and unwilling to relocate, or located outside India).
