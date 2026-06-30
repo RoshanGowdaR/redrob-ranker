@@ -22,6 +22,8 @@ def extract_features(candidates_file, out_file):
             company = profile.get("current_company", "")
             company_size = profile.get("current_company_size", "")
             industry = profile.get("current_industry", "")
+            location = profile.get("location", "")
+            country = profile.get("country", "")
             
             # 1. Career history text blob (all descriptions joined)
             career_history = data.get("career_history", [])
@@ -53,6 +55,8 @@ def extract_features(candidates_file, out_file):
                 "current_company": company,
                 "current_company_size": company_size,
                 "current_industry": industry,
+                "location": location,
+                "country": country,
                 
                 # Career history
                 "career_history_text": career_history_text,
