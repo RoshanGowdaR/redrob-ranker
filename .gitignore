@@ -6,6 +6,7 @@ cache/*
 !cache/
 !cache/features_part1.parquet
 !cache/features_part2.parquet
+!cache/features_scored.parquet
 !cache/embeddings_part1.npy
 !cache/embeddings_part2.npy
 !cache/embeddings_part3.npy
