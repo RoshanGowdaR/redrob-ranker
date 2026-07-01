@@ -18,9 +18,10 @@ python precompute/embed_candidates.py
 *Note: The candidate embedding step runs locally using SentenceTransformers `all-MiniLM-L6-v2` and takes approximately 41 minutes on an 8-core CPU.*
 
 ## 3. Reproduction Command
-To run the fast ranking and reasoning engine and output the top 100 candidate ranking CSV (runs in ~64 seconds without network calls), execute:
+To run the fast ranking and reasoning engine and output the top 100 candidate ranking CSV, execute:
 ```bash
 python rank.py --candidates ./data/candidates.jsonl --out ./submission.csv
+# Expected output: submission.csv — 100 rows, ranked 1-100, runs in ~64 seconds on CPU
 ```
 
 ## 4. Local Sandbox Dashboard
