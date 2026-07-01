@@ -278,16 +278,31 @@ def evaluate_disqualifiers(row):
 
 def run_scoring(features_path, embeddings_path, req_embeddings_path, output_path=None):
     print("Loading features and embeddings...")
-    df = pd.read_parquet(features_path)
     
-    # Load candidate embeddings (check if split parts exist to fit within GitHub's 100MB limit)
-    if embeddings_path.endswith("embeddings.npy"):
-        part1_path = embeddings_path.replace(".npy", "_part1.npy")
-        part2_path = embeddings_path.replace(".npy", "_part2.npy")
-        if os.path.exists(part1_path) and os.path.exists(part2_path):
-            candidate_embeddings = np.concatenate([np.load(part1_path), np.load(part2_path)], axis=0)
+    # Load features (support split parts if they exist)
+    if features_path.endswith("features.parquet"):
+        p1 = features_path.replace(".parquet", "_part1.parquet")
+        p2 = features_path.replace(".parquet", "_part2.parquet")
+        if os.path.exists(p1) and os.path.exists(p2):
+            df = pd.concat([pd.read_parquet(p1), pd.read_parquet(p2)], ignore_index=True)
         else:
-            candidate_embeddings = np.load(embeddings_path)
+            df = pd.read_parquet(features_path)
+    else:
+        df = pd.read_parquet(features_path)
+    
+    # Load candidate embeddings (support split parts to bypass GitHub's 100MB limit)
+    if embeddings_path.endswith("embeddings.npy"):
+        parts = [embeddings_path.replace(".npy", f"_part{i}.npy") for i in range(1, 5)]
+        if all(os.path.exists(p) for p in parts):
+            candidate_embeddings = np.concatenate([np.load(p) for p in parts], axis=0)
+        else:
+            # Fallback to checking 2 parts
+            part1_path = embeddings_path.replace(".npy", "_part1.npy")
+            part2_path = embeddings_path.replace(".npy", "_part2.npy")
+            if os.path.exists(part1_path) and os.path.exists(part2_path):
+                candidate_embeddings = np.concatenate([np.load(part1_path), np.load(part2_path)], axis=0)
+            else:
+                candidate_embeddings = np.load(embeddings_path)
     else:
         candidate_embeddings = np.load(embeddings_path)
         

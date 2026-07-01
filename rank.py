@@ -26,11 +26,20 @@ def main():
     print(f"Output CSV path: {args.out}")
     
     # Verify that cache exists
+    f_part1 = features_path.replace(".parquet", "_part1.parquet")
+    f_part2 = features_path.replace(".parquet", "_part2.parquet")
+    has_features = os.path.exists(features_path) or (os.path.exists(f_part1) and os.path.exists(f_part2))
+    
+    parts = [embeddings_path.replace(".npy", f"_part{i}.npy") for i in range(1, 5)]
+    has_embeddings = os.path.exists(embeddings_path) or all(os.path.exists(p) for p in parts)
+    
+    # Fallback to checking 2 parts of embeddings
     part1_path = embeddings_path.replace(".npy", "_part1.npy")
     part2_path = embeddings_path.replace(".npy", "_part2.npy")
-    has_embeddings = os.path.exists(embeddings_path) or (os.path.exists(part1_path) and os.path.exists(part2_path))
-    
-    if not (os.path.exists(features_path) and has_embeddings and os.path.exists(req_embeddings_path)):
+    if not has_embeddings and (os.path.exists(part1_path) and os.path.exists(part2_path)):
+        has_embeddings = True
+        
+    if not (has_features and has_embeddings and os.path.exists(req_embeddings_path)):
         print("Error: Precomputed cache files not found in cache/. Please run extract_features, honeypot_checks, and embed_candidates first.")
         return
         

@@ -4,9 +4,12 @@ data/candidates.jsonl
 # Ignore generated precomputed caches except for the artifacts needed for ranking
 cache/*
 !cache/
-!cache/features.parquet
+!cache/features_part1.parquet
+!cache/features_part2.parquet
 !cache/embeddings_part1.npy
 !cache/embeddings_part2.npy
+!cache/embeddings_part3.npy
+!cache/embeddings_part4.npy
 !cache/requirement_embeddings.npy
 
 # Ignore virtual environments
