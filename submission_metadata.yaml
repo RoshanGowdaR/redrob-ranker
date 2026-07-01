@@ -1,0 +1,75 @@
+# Redrob Hackathon — Submission Metadata
+#
+# Filled in for team GenSonicImpact
+
+# ============================================================================
+# Team identity
+# ============================================================================
+team_name: "GenSonicImpact"  # Used in leaderboard and announcements
+
+primary_contact:
+  name: "Roshan Gowda R"
+  email: "gowdaroshan49@gmail.com"   # Used for all organizer communication
+  phone: "+91-6362472664"            # Used for top-50 / top-10 outreach
+
+team_members:
+  - name: "Roshan Gowda R"
+    email: "gowdaroshan49@gmail.com"
+    role: "Team Lead & ML Engineer"
+  - name: "Roshan Gowda R"
+    email: "gowdaroshan49@gmail.com"
+    role: "Fullstack Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/RoshanGowdaR/redrob-ranker"
+# Required. Must be reachable. 
+
+sandbox_link: "https://huggingface.co/spaces/RoshanGowdaR/redrob-ranker"
+# Placeholder. Will be deployed by user after Stage 7.
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+# The single command that produces submission.csv from candidates.jsonl.
+# Runs end-to-end within 1.1 minutes on CPU.
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Intel Core PC"               # Hardware platform
+  cpu_cores: 8                                  # Number of CPU cores used
+  ram_gb: 16                                    # Available RAM in GB
+  python_version: "3.10.11"                     # python --version
+  os: "Windows 11"                              # OS version
+  uses_gpu_for_inference: false                 # Must be false — see compute constraints
+  has_network_during_ranking: false             # Must be false — no API calls during ranking
+  pre_computation_required: true                # true if you pre-compute embeddings
+  pre_computation_time_minutes: 42              # Embedding precompute took ~41.6 minutes
+
+# ============================================================================
+# AI tools declaration
+# ============================================================================
+ai_tools_used:
+  - "Antigravity IDE Assistant"
+  - "Cursor"
+
+ai_usage_summary: |
+  Used the Antigravity coding assistant for codebase design, modular logic implementation, and debugging.
+  No candidate data was shared with external LLM APIs.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Multi-stage hybrid ranking system. Combines semantic matching (cosine similarity over cached all-MiniLM-L6-v2 embeddings) with 9 strict logical disqualifiers (such as LangChain-only, consulting-only, research-only) capped at a max penalty of 0.6. Applies behavioral signal modifiers (login recency, response rates, open to work status) and filters logical honeypots down to 0.0. Ties are resolved deterministically by candidate ID ascending. Total ranking runs in ~64 seconds.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true        # I have read submission_spec.md in full
+  code_is_original_work: true       # My code is my team's original work
+  no_collusion: true                # I have not coordinated my submission with other teams
+  honeypot_check_done: true         # Set true as we explicitly checked for honeypots
+  reproduction_tested: true         # I have tested that my reproduce_command runs end-to-end
