@@ -93,8 +93,9 @@ def generate_reasoning_for_candidate(row, rank_pos):
         f"With a solid track record of {yoe:.1f} years as a {title}, this candidate is highly aligned with {best_req} and maintains a {resp_rate}% response rate."
     ]
     
-    # Select template deterministically based on rank to ensure variety is consistent
-    selected_template = templates[rank_pos % len(templates)]
+    # Select template deterministically based on candidate ID to guarantee high variety across any subset
+    cand_num = int(row["candidate_id"].split("_")[1])
+    selected_template = templates[cand_num % len(templates)]
     return selected_template
 
 def run_reasoning(features_scored_path, embeddings_path, req_embeddings_path, output_path):
