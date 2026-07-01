@@ -104,7 +104,16 @@ def run_reasoning(features_scored_path, embeddings_path, req_embeddings_path, ou
     
     # We will load embeddings to determine the best requirement match
     print("Loading embeddings to identify best requirement matches...")
-    candidate_embeddings = np.load(embeddings_path)
+    if embeddings_path.endswith("embeddings.npy"):
+        part1_path = embeddings_path.replace(".npy", "_part1.npy")
+        part2_path = embeddings_path.replace(".npy", "_part2.npy")
+        if os.path.exists(part1_path) and os.path.exists(part2_path):
+            candidate_embeddings = np.concatenate([np.load(part1_path), np.load(part2_path)], axis=0)
+        else:
+            candidate_embeddings = np.load(embeddings_path)
+    else:
+        candidate_embeddings = np.load(embeddings_path)
+        
     req_embeddings = np.load(req_embeddings_path)
     
     # Normalize

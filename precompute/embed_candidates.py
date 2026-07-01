@@ -65,8 +65,9 @@ def generate_embeddings(features_path, embeddings_out, req_out):
     print(f"Total wall-clock time: {elapsed_time:.2f} seconds ({elapsed_time / 60:.2f} minutes)")
     print(f"Average speed: {len(texts) / elapsed_time:.2f} profiles/sec")
     
-    np.save(embeddings_out, candidate_embeddings)
-    print(f"Saved candidate embeddings to {embeddings_out}")
+    np.save(embeddings_out.replace(".npy", "_part1.npy"), candidate_embeddings[:50000])
+    np.save(embeddings_out.replace(".npy", "_part2.npy"), candidate_embeddings[50000:])
+    print(f"Saved candidate embeddings split to {embeddings_out.replace('.npy', '_part1.npy')} and {embeddings_out.replace('.npy', '_part2.npy')}")
 
 if __name__ == "__main__":
     os.makedirs("cache", exist_ok=True)

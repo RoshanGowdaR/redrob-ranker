@@ -279,7 +279,18 @@ def evaluate_disqualifiers(row):
 def run_scoring(features_path, embeddings_path, req_embeddings_path, output_path=None):
     print("Loading features and embeddings...")
     df = pd.read_parquet(features_path)
-    candidate_embeddings = np.load(embeddings_path)
+    
+    # Load candidate embeddings (check if split parts exist to fit within GitHub's 100MB limit)
+    if embeddings_path.endswith("embeddings.npy"):
+        part1_path = embeddings_path.replace(".npy", "_part1.npy")
+        part2_path = embeddings_path.replace(".npy", "_part2.npy")
+        if os.path.exists(part1_path) and os.path.exists(part2_path):
+            candidate_embeddings = np.concatenate([np.load(part1_path), np.load(part2_path)], axis=0)
+        else:
+            candidate_embeddings = np.load(embeddings_path)
+    else:
+        candidate_embeddings = np.load(embeddings_path)
+        
     req_embeddings = np.load(req_embeddings_path)
     
     # Compute semantic scores

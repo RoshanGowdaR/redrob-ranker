@@ -26,7 +26,11 @@ def main():
     print(f"Output CSV path: {args.out}")
     
     # Verify that cache exists
-    if not (os.path.exists(features_path) and os.path.exists(embeddings_path) and os.path.exists(req_embeddings_path)):
+    part1_path = embeddings_path.replace(".npy", "_part1.npy")
+    part2_path = embeddings_path.replace(".npy", "_part2.npy")
+    has_embeddings = os.path.exists(embeddings_path) or (os.path.exists(part1_path) and os.path.exists(part2_path))
+    
+    if not (os.path.exists(features_path) and has_embeddings and os.path.exists(req_embeddings_path)):
         print("Error: Precomputed cache files not found in cache/. Please run extract_features, honeypot_checks, and embed_candidates first.")
         return
         
