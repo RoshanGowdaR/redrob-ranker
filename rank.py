@@ -63,6 +63,10 @@ def main():
     print("\nLoading final scored results...")
     df = pd.read_parquet(scored_path)
     
+    # Save the lightweight top 100 details cache for the Streamlit dashboard
+    print("Saving lightweight top 100 details cache...")
+    df.head(100).to_parquet("cache/top_100_details.parquet", index=False)
+    
     # 5. Extract the top 100 rows
     print("Extracting top 100 candidates...")
     top_100 = df.head(100).copy()
