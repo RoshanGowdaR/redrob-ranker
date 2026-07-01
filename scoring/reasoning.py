@@ -63,16 +63,16 @@ def generate_reasoning_for_candidate(row, rank_pos):
     # Format templates (10 different structures to avoid templated look)
     templates = [
         # Template 0
-        f"A {title} with {yoe:.1f} years of experience, showing strong matching in {best_req} and a high recruiter response rate of {resp_rate}%.",
+        f"A {title} with {yoe:.1f} years of experience, showing strong matching in {best_req} and a recruiter response rate of {resp_rate}%.",
         
         # Template 1
-        f"With {yoe:.1f} years of experience as a {title}, this candidate has proven experience in {skills_str} and is highly responsive on the platform ({resp_rate}% response rate).",
+        f"With {yoe:.1f} years of experience as a {title}, this candidate has proven experience in {skills_str} and is responsive on the platform ({resp_rate}% response rate).",
         
         # Template 2
         f"Demonstrates strong expertise in {best_req} over {yoe:.1f} years. Currently a {title} with a {resp_rate}% response rate, matching key search requirements.",
         
         # Template 3
-        f"Highly active candidate ({resp_rate}% response rate) with {yoe:.1f} years of experience as a {title}, matching JD requirements in {skills_str}.",
+        f"With a {resp_rate}% recruiter response rate and {yoe:.1f} years of experience as a {title}, this candidate matches JD requirements in {skills_str}.",
         
         # Template 4
         f"Currently working as a {title} with {yoe:.1f} years of experience, this candidate matches core requirements like {best_req} and is open to work.",
@@ -84,13 +84,13 @@ def generate_reasoning_for_candidate(row, rank_pos):
         f"An active {title} possessing {yoe:.1f} years of experience who has shipped {skills_str} systems; maintains a {resp_rate}% platform response rate.",
         
         # Template 7
-        f"This candidate brings {yoe:.1f} years of experience as a {title} with deep expertise in {skills_str} and a strong {resp_rate}% recruiter response rate.",
+        f"This candidate brings {yoe:.1f} years of experience as a {title} with deep expertise in {skills_str} and a {resp_rate}% recruiter response rate.",
         
         # Template 8
-        f"Strong fit for the founding team, offering {yoe:.1f} years of experience as a {title} with hands-on exposure to {best_req} ({resp_rate}% response rate).",
+        f"Offers {yoe:.1f} years of experience as a {title} with hands-on exposure to {best_req} and a {resp_rate}% recruiter response rate.",
         
         # Template 9
-        f"With a solid track record of {yoe:.1f} years as a {title}, this candidate is highly aligned with {best_req} and maintains {resp_rate}% response rate."
+        f"With a solid track record of {yoe:.1f} years as a {title}, this candidate is highly aligned with {best_req} and maintains a {resp_rate}% response rate."
     ]
     
     # Select template deterministically based on rank to ensure variety is consistent
