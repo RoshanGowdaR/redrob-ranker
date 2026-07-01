@@ -10,6 +10,9 @@ venv/
 __pycache__/
 *.pyc
 
+# Ignore output CSV submissions
+*.csv
+
 # Ignore OS files
 .DS_Store
 Thumbs.db
